@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIE TEK TEK PAK DONI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  body{background:#FFF5D6;}
+  
+  .wrapper{max-width:1200px;margin:20px auto;background:#fff;border-radius:25px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
+  
+  header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;}
+  .logo{color:#D32F2F;font-size:24px;font-weight:800;}
+  .logo span{color:#FF8F00;}
+  .logo::before{content:"🍜 ";font-size:28px;}
+    #navToggle{display:none;}
+  .hamburger{display:none;font-size:26px;cursor:pointer;color:#555;}
+  .nav-links{display:flex;gap:20px;align-items:center;}
+  .nav-links a{color:#333;text-decoration:none;font-size:14px;font-weight:600;}
+  .nav-links a:hover{color:#D32F2F;}
+  
+  .hero{display:flex;background:linear-gradient(105deg, #FFC107 60%, #D32F2F 60%);color:#fff;}
+  .hero-img{width:55%;}
+  .hero-img img{width:100%;height:100%;object-fit:cover;}
+  .hero-text{width:45%;padding:50px 40px;}
+  .hero-text h2{font-size:48px;font-weight:800;line-height:1.1;margin-bottom:15px;}
+  .hero-text h2 span{color:#fff;}
+  .hero-text p{font-size:15px;margin-bottom:20px;}
+  .btn-wa{background:#25D366;color:#fff;padding:14px 28px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:10px;}
+.btn-wa img{width:22px;height:22px;}
+.wa-float{padding:14px !important;display:flex;align-items:center;justify-content:center;}
+.wa-float img{width:28px;height:28px;display:block;}
+  .badges{margin-top:15px;display:flex;gap:10px;flex-wrap:wrap;}
+  .badge{background:#B71C1C;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600;}
+  
+  .section{padding:40px 30px;}
+  h3{text-align:center;color:#D32F2F;font-size:30px;font-weight:800;margin-bottom:5px;}
+  .sub{text-align:center;color:#555;margin-bottom:30px;}
+  
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+  .card{background:#fff;border-radius:18px;padding:15px;box-shadow:0 5px 15px rgba(0,0,0,0.08);text-align:center;}
+  .card img{width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:12px;}
+  .card h4{font-size:18px;color:#222;margin-bottom:5px;}
+  .card p{font-size:13px;color:#666;margin-bottom:8px;}
+  .harga{color:#D32F2F;font-weight:800;font-size:20px;}
+  .stok{margin-top:8px;font-size:13px;font-weight:700;color:#2E7D32;}
+  .stok.habis{color:#D32F2F;}
+  #panelOwner{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:520px;max-height:85vh;overflow:auto;background:#fff;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.3);z-index:1000;text-align:left;}
+  #panelOwner h3{color:#D32F2F;margin-bottom:10px;}
+  #panelOwner label{display:block;font-weight:700;font-size:13px;margin:12px 0 4px;}
+  #panelOwner input,#panelOwner select{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;font-size:14px;}
+  #panelOwner table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px;}
+  #panelOwner td,#panelOwner th{border:1px solid #eee;padding:8px;text-align:left;}
+  #overlayOwner{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;}
+  .tag{display:inline-block;margin-top:8px;padding:4px 12px;border-radius:15px;font-size:11px;font-weight:700;}
+  .tag.best{background:#D32F2F;color:#fff;}
+  .tag.pedas{background:#FFC107;color:#000;}
+  .tag.fav{background:#FFC107;color:#000;}
+  
+  .about{background:linear-gradient(135deg,#FFC107 0%,#D32F2F 45%,#C62828 100%);color:#fff;padding:40px;text-align:center;margin-top:40px;}
+.about-text{width:100%;max-width:800px;margin:0 auto;padding:0;}
+.about h3{color:#000;}
+.about-text p{color:#fff;}
+  
+  .cara-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;}
+  .cara-item h4{color:#D32F2F;font-size:18px;margin:10px 0;}
+  .cara-icon{font-size:30px;background:#FFECB3;width:50px;height:50px;line-height:50px;border-radius:50%;margin:auto;color:#D32F2F;font-weight:800;}
+  
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .testi-card{background:#fff;padding:20px;border-radius:15px;border-left:6px solid #FFC107;box-shadow:0 3px 10px rgba(0,0,0,0.05);}
+  .stars{color:#FFC107;margin-bottom:8px;}
+  
+  footer{background:#C62828;color:#fff;padding:30px;}
+  .footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .footer-grid a{color:#FFECB3;text-decoration:none;}
+  .map{width:250px;height:120px;border-radius:10px;}
+  
+.checkout{max-width:700px;margin:0 auto;background:linear-gradient(135deg,#FFF9C4 0%,#FFECB3 25%,#FFE0B2 50%,#F8BBD0 75%,#E1BEE7 100%);border:2px solid #FFD54F;border-radius:18px;padding:25px;box-shadow:0 8px 25px rgba(0,0,0,0.12);text-align:left;}
+.checkout label{display:block;font-weight:700;font-size:14px;margin:15px 0 5px;color:#222;}
+.checkout input,.checkout select,.checkout textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;}
+.checkout textarea{resize:vertical;min-height:70px;}
+.btn-utama{width:100%;background:#D32F2F;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;margin-top:15px;}
+.btn-utama.hijau{background:#25D366;}
+.btn-pilih{width:100%;background:#FFF5D6;border:1px solid #FFC107;color:#222;padding:12px;border-radius:10px;font-weight:600;cursor:pointer;margin-top:8px;text-align:left;}
+.btn-pilih:hover{background:#FFECB3;}
+.struk{background:#FFF5D6;border:1px dashed #D32F2F;border-radius:12px;padding:18px;margin-top:18px;font-size:14px;line-height:1.7;white-space:pre-line;}
+.hint{font-size:12px;color:#888;margin-top:4px;}
+
+  .wa-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:700;box-shadow:0 5px 15px rgba(0,0,0,0.2);z-index:999;}
+  
+   @media(max-width:900px){
+    .hero,.about{flex-direction:column}
+    .hero-img,.hero-text,.about-text,.about-img{width:100%}
+    .menu-grid,.cara-grid,.testi-grid{grid-template-columns:1fr}
+    header{position:relative;}
+    .hamburger{display:block;}
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:15px 30px;gap:15px;box-shadow:0 10px 20px rgba(0,0,0,0.1);z-index:99;}
+    #navToggle:checked ~ .nav-links{display:flex;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <header>
+    <div class="logo" id="logoOwner" onclick="klikLogoOwner()">MIE TEK TEK <span>PAK DONI</span></div>
+    <input type="checkbox" id="navToggle">
+    <label for="navToggle" class="hamburger">☰</label>
+    <nav class="nav-links">
+      <a href="#beranda">Beranda</a>
+      <a href="#tentang">Tentang Kami</a>
+      <a href="#menu">Menu Katalog</a>
+      <a href="#kontak">Kontak & Lokasi</a>
+    </nav>
+  </header>
+
+    <section class="hero" id="beranda">
+    <div class="hero-img">
+      <img src="mie.png"style=" width:100%" alt="Mie Tek Tek">
+    </div>
+    <div class="hero-text">
+      <h2>Lapar? <span>Pesan Sekarang!</span></h2>
+      <p>Mie Tek Tek khas Bandung — pedas, gurih, bikin nagih! Pesan cepat, antar hangat ke tempatmu.</p>
+      <a href="#checkout" class="btn-wa"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Pesan Via Whatsapp</a>
+      <div class="badges">
+        <div class="badge">🔥 Pedas Level Bisa</div>
+        <div class="badge">⚡ Antar 15-30 Menit</div>
+        <div class="badge">💯 Halal</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="tentang">
+    <div class="about-text">
+      <h3>Tentang Kami</h3>
+      <p>MIE TEK TEK PAK DONI hadir sejak 2020, menyajikan mie tek tek khas Bandung dengan resep rumahan yang gurih & pedas. Bahan fresh, dimasak langsung saat dipesan. Cocok buat teman nongkrong, kerja, atau ngampus!</p>
+    </div>
+  </section>
+
+    <section class="section" id="menu">
+    <h3>Menu Katalog</h3>
+    <p class="sub">Pilihan mie paling enak, siap bikin kenyang</p>
+    <div class="menu-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600" alt="">
+        <h4>Mie Tek Tek Ayam</h4>
+        <p>Ayam suwir, sawi, bawang goreng</p>
+        <div class="harga">Rp 18.000</div>
+        <div class="stok" id="stok-0">Stok: 20</div>
+        <span class="tag best">Best Seller</span>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=600" alt="">
+        <h4>Mie Tek Tek Pedas Baso</h4>
+        <p>Baso sapi, sambal pedas, telur</p>
+        <div class="harga">Rp 20.000</div>
+        <div class="stok" id="stok-1">Stok: 20</div>
+        <span class="tag pedas">Pedas</span>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?q=80&w=600" alt="">
+        <h4>Mie Tek Tek Spesial Telur</h4>
+        <p>Telur ceplok, sosis, topping komplit</p>
+        <div class="harga">Rp 22.000</div>
+        <div class="stok" id="stok-2">Stok: 20</div>
+        <span class="tag fav">Favorit</span>
+      </div>
+    </div>
+  </section>
+
+    <section class="section" id="checkout">
+    <h3>Check Out</h3>
+    <p class="sub">Isi dulu, lalu pesan & bayar — struk otomatis terkirim ke WA</p>
+    <div class="checkout">
+      <label>Nama</label>
+      <input id="ckNama" type="text" placeholder="Contoh: Dewi">
+
+      <label>Alamat Lengkap</label>
+      <textarea id="ckAlamat" placeholder="Nama jalan, nomor rumah, patokan, kecamatan"></textarea>
+
+                 <label>Link Google Map</label>
+      <input id="ckMap" type="text" placeholder="Paste link Google Maps / Shareloc dari WA">
+      <div class="hint">Boleh dikosongkan kalau pilih Ambil ke Kedai.</div>
+
+      <button class="btn-pilih" type="button" onclick="kirimLokasiSaya()">📍 Kirim Lokasi Saya (GPS)</button>
+      <div id="txtGpsStatus" class="hint">Tidak perlu cari angka koordinat. Klik tombol ini, klik Izinkan, lokasi kamu keisi otomatis.</div>
+
+      <label>Jarak (km) - Isi Manual Kalau Link Tidak Terbaca</label>
+      <input id="ckJarakManual" type="number" min="0" step="0.1" placeholder="Contoh: 3.2 - kosongkan kalau link ada koordinat">
+      <div class="hint">Kalau link Maps ada @-6.xxx,107.xxx, jarak jalan otomatis dihitung. Kalau link pendek (maps.app.goo.gl) dan tidak terbaca, isi jarak manual di sini.</div>
+
+      <label>Ongkir</label>
+      <input id="ckOngkirTampil" type="text" readonly placeholder="Otomatis setelah pilih Antar / Ambil">
+      <div id="boxCekRute" style="display:none;margin-top:6px;"><a id="linkCekRute" href="#" target="_blank">Cek Rute di Google Maps ➤</a></div>
+
+            <label>Pilih Menu</label>
+      <select id="ckMenu">
+        <option value="">-- Klik untuk pilih menu --</option>
+        <option value="Mie Tek Tek Ayam - Rp 18.000">Mie Tek Tek Ayam - Rp 18.000</option>
+        <option value="Mie Tek Tek Pedas Baso - Rp 20.000">Mie Tek Tek Pedas Baso - Rp 20.000</option>
+        <option value="Mie Tek Tek Spesial Telur - Rp 22.000">Mie Tek Tek Spesial Telur - Rp 22.000</option>
+      </select>
+
+           <label>Porsi</label>
+      <input id="ckPorsi" type="number" min="1" placeholder="Ketik jumlah porsi, contoh: 1 / 2 / 3">
+
+      <label>Pembayaran</label>
+      <select id="ckBayarAwal">
+        <option value="">-- Klik untuk pilih pembayaran --</option>
+        <option value="Transfer Bank">Transfer Bank</option>
+        <option value="QRIS">QRIS</option>
+      </select>
+
+      <button class="btn-utama" type="button" onclick="bukaOpsiAntar()">Pesan Sekarang ▼</button>
+
+      <div id="opsiAntar" style="display:none;">
+        <button class="btn-pilih" type="button" onclick="pilihAntar('Antar ke Lokasi')">🛵 Antar ke Lokasi</button>
+        <button class="btn-pilih" type="button" onclick="pilihAntar('Ambil ke Kedai')">🏪 Ambil ke Kedai</button>
+      </div>
+
+      <div id="boxBayar" style="display:none;">
+        <label>Pengiriman: <span id="txtAntar">-</span></label>
+        <button class="btn-utama hijau" type="button" onclick="bukaOpsiBayar()">Bayar Sekarang ▼</button>
+      </div>
+
+      <div id="opsiBayar" style="display:none;">
+        <button class="btn-pilih" type="button" onclick="pilihBayar('Transfer Bank')">🏦 Transfer Bank</button>
+        <button class="btn-pilih" type="button" onclick="pilihBayar('QRIS')">📱 QRIS</button>
+      </div>
+
+      <div id="boxStruk" style="display:none;">
+        <div class="struk" id="txtStruk"></div>
+        <button class="btn-utama hijau" type="button" onclick="kirimWA()">Kirim ke WA Owner ➤</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Testimoni</h3>
+    <p class="sub">Kata mereka tentang Mie Tek Tek</p>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="stars">★★★★★</div><p>"Mienya enak banget, pedasnya pas! Teksturnya kenyal, porsinya banyak. Pasti order lagi."</p><b>Dewi, Mahasiswa UPI Bandung</b></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p>"Pelayanannya cepat, 20 menit sudah sampai. Mie baso nya juicy & gurih!"</p><b>Rizky, Karyawan Dago</b></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p>"Langganan tiap minggu! Spesial telur nya favorit anakku."</p><b>Sarah, Ibu Rumah Tangga Antapani</b></div>
+    </div>
+  </section>
+
+    <footer id="kontak">
+    <div class="footer-grid">
+      <div>
+        <h4>Kontak & Lokasi</h4>
+        <p>💬 <a href="https://wa.me/6281214103379">0812-1410-3379</a></p>
+        <p>🕒 Buka setiap hari: 16.00 – 22.00 WIB</p>
+        <p>📍 <a href="https://maps.app.goo.gl/5ng2FMF69AYzY9cc9?g_st=aw" target="_blank">Perumahan Grand Rajasanagara R1-162, Buah Batu</a></p>
+      </div>
+       <div>
+        <iframe class="map" src="https://www.google.com/maps?q=Perumahan%20Grand%20Rajasanagara%20Buah%20Batu%20Bandung&output=embed" style="border:0;" loading="lazy" allowfullscreen></iframe>
+        <div style="text-align:center;margin-top:6px;"><a href="https://maps.app.goo.gl/5ng2FMF69AYzY9cc9?g_st=aw" target="_blank">Buka di Google Maps ➤</a></div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:13px;">© 2026 MIE TEK TEK PAK DONI — Dibuat dengan ❤️ untuk pecinta mie Bandung</p>
+  </footer>
+</div>
+
+<a href="#checkout" class="wa-float"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
+
+<div id="overlayOwner" onclick="tutupOwner()"></div>
+<div id="panelOwner">
+  <h3>📦 Inventory Owner</h3>
+  <div id="tabelStok"></div>
+  <label>Restok — Pilih Menu</label>
+  <select id="restokMenu"></select>
+  <label>Tambah Stok (jumlah porsi)</label>
+  <input id="restokJumlah" type="number" min="1" placeholder="Contoh: 10">
+  <button class="btn-utama" type="button" onclick="tambahStok()">+ Tambah Stok</button>
+  <hr style="margin:18px 0;">
+  <h3>➕ Upload Menu Baru</h3>
+  <label>Nama Menu</label>
+  <input id="baruNama" type="text" placeholder="Contoh: Mie Tek Tek Sosis">
+  <label>Harga (angka saja, contoh: 25000)</label>
+  <input id="baruHarga" type="number" min="1" placeholder="25000">
+  <label>Deskripsi</label>
+  <input id="baruDesk" type="text" placeholder="Contoh: Sosis, telur, sawi">
+  <label>Foto Menu (dari HP / Laptop)</label>
+  <input id="baruFoto" type="file" accept="image/*" onchange="previewFoto(this)">
+  <img id="previewBaruFoto" style="display:none;width:100%;height:140px;object-fit:cover;border-radius:10px;margin-top:8px;">
+  <div class="hint">Klik untuk pilih foto dari Galeri / Folder. Tidak perlu link https:// lagi.</div>
+  <label>Stok Awal</label>
+  <input id="baruStok" type="number" min="0" placeholder="20">
+  <button class="btn-utama hijau" type="button" onclick="tambahMenu()">Upload Menu</button>
+  <button class="btn-utama" type="button" onclick="tutupOwner()" style="background:#888;">Tutup</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+var SUPABASE_URL = 'https://kuwbwpxaflhvivnoxaug.supabase.co';
+var SUPABASE_KEY = 'sb_publishable_5lrTD_2dutLlAXRrd8OfxA_oL9Tt8i3';
+var supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
+
+<script>
+var ckAntar='';
+var ckBayar='';
+var ckJarakKm=0;
+var ckOngkir=0;
+var ckJarakSumber='';
+var ckRuteLink='';
+var KEDAI_LAT=-6.9734444;
+var KEDAI_LNG=107.6749444;
+function parseKoordinatDariLink(link){
+  if(!link) return null;
+  var m=link.match(/@(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+  if(m) return {lat:parseFloat(m[1]),lng:parseFloat(m[2])};
+  m=link.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/);
+  if(m) return {lat:parseFloat(m[1]),lng:parseFloat(m[2])};
+  m=link.match(/[?&](?:q|ll|destination|origin)=(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+  if(m) return {lat:parseFloat(m[1]),lng:parseFloat(m[2])};
+  m=link.match(/(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+  if(m) return {lat:parseFloat(m[1]),lng:parseFloat(m[2])};
+  return null;
+}
+function hitungJarakGarisLurusKm(lat1,lng1,lat2,lng2){
+  var R=6371;
+  var dLat=(lat2-lat1)*Math.PI/180;
+  var dLng=(lng2-lng1)*Math.PI/180;
+  var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
+  return 2*R*Math.asin(Math.sqrt(a));
+}
+function ongkirDariJarak(km){
+  if(km<=2) return 5000;
+  if(km<=5) return 10000;
+  if(km<=10) return 13000;
+  if(km<=15) return 17500;
+  if(km<=20) return 20000;
+  if(km<=30) return 35000;
+  return 60000;
+}
+function buatLinkRute(latCust,lngCust){
+  return 'https://www.google.com/maps/dir/?api=1&origin='+KEDAI_LAT+','+KEDAI_LNG+'&destination='+latCust+','+lngCust+'&travelmode=driving';
+}
+var ckCustLat=null;
+var ckCustLng=null;
+function kirimLokasiSaya(){
+  var statusEl=document.getElementById('txtGpsStatus');
+  if(!navigator.geolocation){
+    if(statusEl){statusEl.textContent='HP ini tidak support GPS. Isi Jarak (km) manual di bawah saja.';}
+    alert('HP ini tidak support GPS. Isi Jarak (km) manual saja.');
+    return;
+  }
+  if(statusEl){statusEl.textContent='Mencari lokasi kamu... jangan tutup halaman ini.';}
+  navigator.geolocation.getCurrentPosition(function(pos){
+    ckCustLat=pos.coords.latitude;
+    ckCustLng=pos.coords.longitude;
+    document.getElementById('ckMap').value='https://www.google.com/maps/@'+ckCustLat+','+ckCustLng+',17z';
+    document.getElementById('ckJarakManual').value='';
+    if(statusEl){statusEl.textContent='Lokasi ketemu. Tinggal pilih Antar ke Lokasi, ongkir otomatis dihitung.';}
+  }, function(err){
+    ckCustLat=null;
+    ckCustLng=null;
+    if(statusEl){statusEl.textContent='Lokasi tidak diizinkan / GPS tidak ketemu. Isi Jarak (km) manual di bawah saja.';}
+    alert('Lokasi tidak diizinkan / GPS tidak ketemu. Isi Jarak (km) manual saja, contoh: 3.2');
+  }, {enableHighAccuracy:true,timeout:15000,maximumAge:0});
+}
+function tampilOngkir(){
+  var el=document.getElementById('ckOngkirTampil');
+  if(el){
+    if(ckAntar==='Ambil ke Kedai'){el.value='Gratis (Ambil ke Kedai)';}
+    else if(ckAntar==='Antar ke Lokasi'){el.value=ckJarakKm.toFixed(1)+' km ('+ckJarakSumber+') - Rp '+ckOngkir.toLocaleString('id-ID');}
+    else {el.value='';}
+  }
+  var box=document.getElementById('boxCekRute');
+  var link=document.getElementById('linkCekRute');
+  if(box&&link){
+    if(ckAntar==='Antar ke Lokasi'&&ckRuteLink){link.href=ckRuteLink;box.style.display='block';}
+    else {box.style.display='none';}
+  }
+}
+function bukaOpsiAntar(){
+  if(!document.getElementById('ckNama').value.trim()){alert('Isi Nama dulu');return;}
+  if(!document.getElementById('ckMenu').value){alert('Pilih Menu dulu');return;}
+  var menuVal=document.getElementById('ckMenu').value;
+  var porsiRaw=document.getElementById('ckPorsi').value.trim();
+  if(!porsiRaw){alert('Isi Porsi dulu');return;}
+  var porsiNum=parseInt(porsiRaw);
+  if(isNaN(porsiNum)){alert('Porsi harus angka');return;}
+  if(porsiNum<1){alert('Porsi minimal 1');return;}
+  var idxMenu=daftarMenu.findIndex(function(m){return m.nama===menuVal;});
+  if(idxMenu<0){alert('Menu tidak ditemukan, refresh halaman dulu');return;}
+  if(daftarMenu[idxMenu].stok<=0){alert('Stok '+daftarMenu[idxMenu].namaOnly+' sudah habis, silakan pilih menu lain');return;}
+  if(porsiNum>daftarMenu[idxMenu].stok){alert('Porsi melebihi stok! Stok '+daftarMenu[idxMenu].namaOnly+' tinggal '+daftarMenu[idxMenu].stok+' porsi');return;}
+  if(!document.getElementById('ckBayarAwal').value){alert('Pilih Pembayaran dulu');return;}
+  document.getElementById('opsiAntar').style.display='block';
+}
+async function pilihAntar(v){
+  if(v==='Antar ke Lokasi'){
+    if(!document.getElementById('ckAlamat').value.trim()){alert('Isi Alamat Lengkap dulu kalau pilih Antar ke Lokasi');return;}
+    if(!document.getElementById('ckMap').value.trim()){alert('Isi Link Google Map dulu kalau pilih Antar ke Lokasi');return;}
+        var manualRaw=document.getElementById('ckJarakManual').value.trim();
+    if(manualRaw){
+      ckJarakKm=parseFloat(manualRaw);
+      if(isNaN(ckJarakKm)||ckJarakKm<0){alert('Jarak manual harus angka, minimal 0');return;}
+      ckJarakSumber='manual';
+      if(ckCustLat!==null&&ckCustLng!==null){ckRuteLink=buatLinkRute(ckCustLat,ckCustLng);} else {ckRuteLink='';}
+    } else {
+      var koor=parseKoordinatDariLink(document.getElementById('ckMap').value.trim());
+      if(!koor){alert('Link Maps tidak ada koordinat (biasanya link pendek maps.app.goo.gl). Isi Jarak (km) manual dulu, contoh: 3.2');return;}
+      ckRuteLink=buatLinkRute(koor.lat,koor.lng);
+      try{
+        var urlOsrm='https://router.project-osrm.org/route/v1/driving/'+KEDAI_LNG+','+KEDAI_LAT+';'+koor.lng+','+koor.lat+'?overview=false';
+        var resOsrm=await fetch(urlOsrm);
+        var dataOsrm=await resOsrm.json();
+        if(dataOsrm&&dataOsrm.routes&&dataOsrm.routes[0]&&dataOsrm.routes[0].distance){
+          ckJarakKm=dataOsrm.routes[0].distance/1000;
+          ckJarakSumber='jalan (OSRM)';
+        } else {
+          ckJarakKm=hitungJarakGarisLurusKm(KEDAI_LAT,KEDAI_LNG,koor.lat,koor.lng);
+          ckJarakSumber='garis lurus (OSRM gagal)';
+        }
+      } catch(e){
+        ckJarakKm=hitungJarakGarisLurusKm(KEDAI_LAT,KEDAI_LNG,koor.lat,koor.lng);
+        ckJarakSumber='garis lurus (OSRM gagal)';
+      }
+    }
+    ckOngkir=ongkirDariJarak(ckJarakKm);
+  }
+  if(v==='Ambil ke Kedai'){ckJarakKm=0;ckOngkir=0;ckJarakSumber='';ckRuteLink='';}
+  ckAntar=v;
+  document.getElementById('txtAntar').textContent=v;
+  tampilOngkir();
+  document.getElementById('opsiAntar').style.display='none';
+  document.getElementById('boxBayar').style.display='block';
+}
+function bukaOpsiBayar(){
+  document.getElementById('opsiBayar').style.display='block';
+}
+function pilihBayar(v){
+  ckBayar=v;
+  document.getElementById('ckBayarAwal').value=v;
+  document.getElementById('opsiBayar').style.display='none';
+  var nama=document.getElementById('ckNama').value.trim();
+  var alamat=document.getElementById('ckAlamat').value.trim()||'-';
+  var map=document.getElementById('ckMap').value.trim()||'-';
+        var menu=document.getElementById('ckMenu').value;
+    var porsiRaw=document.getElementById('ckPorsi').value.trim();
+  var porsi=porsiRaw? porsiRaw+' Porsi' : '-';
+  var porsiNum=parseInt(porsiRaw)||0;
+  var menuObj=daftarMenu.find(function(m){return m.nama===menu;});
+  var hargaSatuan=menuObj? menuObj.harga : 0;
+    var totalHarga=hargaSatuan*porsiNum;
+  var totalBayar=totalHarga+ckOngkir;
+  var struk='=== STRUK PESANAN MIE TEK TEK PAK DONI ===\nNama: '+nama+'\nAlamat: '+alamat+'\nLink Maps: '+map+'\nMenu: '+menu+'\nHarga: Rp '+hargaSatuan.toLocaleString('id-ID')+'\nPorsi: '+porsi+'\nTotal: Rp '+totalHarga.toLocaleString('id-ID')+'\nPengiriman: '+ckAntar+'\nJarak: '+(ckAntar==='Antar ke Lokasi' ? ckJarakKm.toFixed(1)+' km ('+ckJarakSumber+')' : '-')+'\nOngkir: '+(ckAntar==='Ambil ke Kedai' ? 'Gratis' : 'Rp '+ckOngkir.toLocaleString('id-ID'))+'\nTotal Bayar: Rp '+totalBayar.toLocaleString('id-ID')+'\nPembayaran: '+ckBayar+'\nCek Rute: '+(ckRuteLink ? ckRuteLink : '-')+'\n\nMohon konfirmasi pesanan saya, terima kasih!';
+  document.getElementById('txtStruk').textContent=struk;
+  document.getElementById('boxStruk').style.display='block';
+}
+var daftarMenu=[];
+function simpanStok(){ /* stok sekarang di Supabase, tidak lagi di localStorage */ }
+function mapRow(r){
+  var hargaNum = parseInt(r.harga)||0;
+  var namaMentah = r.nama || r.name || 'Menu';
+  var namaBersih = namaMentah.replace(/\s*-\s*Rp\s*[\d.,]+$/,'').trim();
+  return {
+    id: r.id,
+    nama: namaBersih + (hargaNum ? ' - Rp ' + hargaNum.toLocaleString('id-ID') : ''),
+    namaOnly: namaBersih,
+    harga: hargaNum,
+    desk: r.deskripsi || r.desk || '-',
+    foto: r.foto || r.foto_url || r.image_url || r.gambar || 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600',
+    stok: parseInt(r.stok ?? r.stock ?? 0)||0
+  };
+}
+function renderMenuGrid(){
+  var grid=document.querySelector('.menu-grid');
+  if(!grid) return;
+  grid.innerHTML='';
+  daftarMenu.forEach(function(m,i){
+    var div=document.createElement('div'); div.className='card';
+    var tagHtml='';
+    if(m.namaOnly.indexOf('Ayam')>=0){ tagHtml='<span class="tag best">Best Seller</span>'; }
+    else if(m.namaOnly.indexOf('Baso')>=0){ tagHtml='<span class="tag pedas">Pedas</span>'; }
+    else if(m.namaOnly.indexOf('Telur')>=0){ tagHtml='<span class="tag fav">Favorit</span>'; }
+    div.innerHTML='<img src="'+m.foto+'" alt=""><h4>'+m.namaOnly+'</h4><p>'+m.desk+'</p><div class="harga">Rp '+(m.harga||0).toLocaleString('id-ID')+'</div><div class="stok'+(m.stok<=0?' habis':'')+'" id="stok-'+i+'">Stok: '+m.stok+'</div>'+tagHtml;
+    grid.appendChild(div);
+  });
+}
+function tampilStok(){
+  renderMenuGrid();
+  var opt=document.getElementById('ckMenu');
+  if(opt){
+    var cur=opt.value;
+    opt.innerHTML='<option value="">-- Klik untuk pilih menu --</option>';
+    daftarMenu.forEach(function(m){
+      var o=document.createElement('option'); o.value=m.nama; o.textContent=m.nama+' (Stok: '+m.stok+')';
+      opt.appendChild(o);
+    });
+    opt.value=cur;
+  }
+}
+var daftarMenuCadangan=[
+  {id:-1,nama:'Mie Tek Tek Ayam',harga:18000,desk:'Ayam suwir, sawi, bawang goreng',foto:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600',stok:20},
+  {id:-2,nama:'Mie Tek Tek Pedas Baso',harga:20000,desk:'Baso sapi, sambal pedas, telur',foto:'https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=600',stok:20},
+  {id:-3,nama:'Mie Tek Tek Spesial Telur',harga:22000,desk:'Telur ceplok, sosis, topping komplit',foto:'https://images.unsplash.com/photo-1623341214825-9f4f963727da?q=80&w=600',stok:20}
+].map(mapRow);
+async function loadMenus(){
+  var res = await supabaseClient.from('menus').select('*').order('id',{ascending:true});
+  if(res.error || !res.data || !res.data.length){ console.log(res.error||'menus kosong, pakai cadangan'); if(!daftarMenu.length){ daftarMenu=daftarMenuCadangan; } tampilStok(); return; }
+  daftarMenu = (res.data||[]).map(mapRow);
+  tampilStok();
+}
+loadMenus();
+setInterval(loadMenus,30000);
+function kirimWA(){
+  var teks=document.getElementById('txtStruk').textContent;
+  var menu=document.getElementById('ckMenu').value;
+  var porsiRaw=document.getElementById('ckPorsi').value.trim();
+  var jumlah=parseInt(porsiRaw)||1;
+   window.open('https://wa.me/6281214103379?text='+encodeURIComponent(teks),'_blank');
+  alert('Pesanan terkirim ke WA Owner!');
+   var idx=daftarMenu.findIndex(function(m){return m.nama===menu;});
+    if(idx>=0){
+    if(!daftarMenu[idx].id || daftarMenu[idx].id<=0){
+      alert('GAGAL: Menu ini dari cadangan (id 0), tidak bisa update Supabase. Refresh halaman dulu sampai menu dari Supabase muncul.');
+      return;
+    }
+    var stokBaru=Math.max(0,daftarMenu[idx].stok-jumlah);
+    supabaseClient.from('menus').update({stok:stokBaru}).eq('id',daftarMenu[idx].id).then(function(res){
+      if(res.error){ alert('GAGAL UPDATE STOK KE SUPABASE: '+res.error.message); return; }
+      daftarMenu[idx].stok=stokBaru; tampilStok();
+      loadMenus();
+      if(stokBaru<=0){ alert('Stok '+menu+' sudah habis, silakan restok di Inventory'); }
+    });
+  }
+  document.getElementById('ckNama').value='';
+  document.getElementById('ckAlamat').value='';
+  document.getElementById('ckMap').value='';
+  document.getElementById('ckMenu').value='';
+  document.getElementById('ckPorsi').value='';
+  document.getElementById('ckBayarAwal').value='';
+  document.getElementById('ckJarakManual').value='';
+  document.getElementById('ckOngkirTampil').value='';
+  ckAntar='';
+  ckBayar='';
+  ckJarakKm=0;
+  ckOngkir=0;
+  ckJarakSumber='';
+  ckRuteLink='';
+  ckCustLat=null;
+  ckCustLng=null;
+  var gpsStatusEl=document.getElementById('txtGpsStatus');
+  if(gpsStatusEl){gpsStatusEl.textContent='Tidak perlu cari angka koordinat. Klik tombol ini, klik Izinkan, lokasi kamu keisi otomatis.';}
+  document.getElementById('txtStruk').textContent='';
+  document.getElementById('opsiAntar').style.display='none';
+  document.getElementById('boxBayar').style.display='none';
+  document.getElementById('opsiBayar').style.display='none';
+  document.getElementById('boxStruk').style.display='none';
+}
+var klikLogo=0; var timerLogo=null;
+function klikLogoOwner(){
+  klikLogo++;
+  clearTimeout(timerLogo);
+  timerLogo=setTimeout(function(){ klikLogo=0; },2000);
+  if(klikLogo>=5){
+    klikLogo=0;
+    var pin=prompt('Masukkan PIN Owner:');
+    if(pin==='151515$$$'){ bukaOwner(); } else if(pin!==null){ alert('PIN salah'); }
+  }
+}
+function bukaOwner(){
+  var sel=document.getElementById('restokMenu');
+  sel.innerHTML='';
+  daftarMenu.forEach(function(m,i){
+    var o=document.createElement('option'); o.value=i; o.textContent=m.nama+' (Stok: '+m.stok+')'; sel.appendChild(o);
+  });
+  var html='<table><tr><th>Menu</th><th>Stok</th></tr>';
+  daftarMenu.forEach(function(m){ html+='<tr><td>'+m.nama+'</td><td>'+m.stok+'</td></tr>'; });
+  html+='</table>';
+  document.getElementById('tabelStok').innerHTML=html;
+  document.getElementById('overlayOwner').style.display='block';
+  document.getElementById('panelOwner').style.display='block';
+}
+function tutupOwner(){
+  document.getElementById('overlayOwner').style.display='none';
+  document.getElementById('panelOwner').style.display='none';
+}
+async function tambahStok(){
+  var idx=parseInt(document.getElementById('restokMenu').value);
+  var jml=parseInt(document.getElementById('restokJumlah').value)||0;
+  if(jml<=0){ alert('Isi jumlah restok dulu'); return; }
+  var m=daftarMenu[idx];
+  var stokBaru=m.stok+jml;
+  var res=await supabaseClient.from('menus').update({stok:stokBaru}).eq('id',m.id);
+  if(res.error){ alert('Gagal restok: '+res.error.message); return; }
+  m.stok=stokBaru; tampilStok();
+  alert('Stok ditambah. Stok sekarang: '+stokBaru);
+  document.getElementById('restokJumlah').value=''; bukaOwner();
+}
+var fotoBaruFile=null;
+function previewFoto(input){
+  var file=input.files[0];
+  if(!file){ fotoBaruFile=null; return; }
+  fotoBaruFile=file;
+  var pv=document.getElementById('previewBaruFoto');
+  pv.src=URL.createObjectURL(file); pv.style.display='block';
+}
+async function tambahMenu(){
+  var nama=document.getElementById('baruNama').value.trim();
+  var harga=parseInt(document.getElementById('baruHarga').value)||0;
+  var desk=document.getElementById('baruDesk').value.trim()||'-';
+  var stok=parseInt(document.getElementById('baruStok').value)||0;
+  if(!nama||!harga){ alert('Isi Nama Menu dan Harga dulu'); return; }
+  var fotoUrl='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=600';
+  if(fotoBaruFile){
+    var fileName=Date.now()+'-'+fotoBaruFile.name.replace(/\s+/g,'-');
+    var up=await supabaseClient.storage.from('menu-foto').upload(fileName,fotoBaruFile);
+    if(up.error){ alert('Gagal upload foto: '+up.error.message); return; }
+    var pub=supabaseClient.storage.from('menu-foto').getPublicUrl(fileName);
+    fotoUrl=pub.data.publicUrl;
+  }
+        var res=await supabaseClient.from('menus').insert([{id:Date.now(),nama:nama,harga:harga,desk:desk,foto:fotoUrl,stok:stok}]).select().single();
+  if(res.error){ alert('Gagal simpan menu: '+res.error.message); return; }
+  daftarMenu.push(mapRow(res.data));
+  tampilStok(); bukaOwner();
+  document.getElementById('baruNama').value=''; document.getElementById('baruHarga').value='';
+  document.getElementById('baruDesk').value=''; document.getElementById('baruFoto').value=''; document.getElementById('baruStok').value='';
+  fotoBaruFile=null; document.getElementById('previewBaruFoto').style.display='none'; document.getElementById('previewBaruFoto').src='';
+  alert('Menu baru berhasil diupload');
+}
+</script>
+
+</body>
+</html>
